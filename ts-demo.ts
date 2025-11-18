@@ -191,15 +191,7 @@ let car: Car[] = [
     },
     
     {
-    make: "mustang",
-    model: {
-        name: "Ford",
-        description: "brrrr",
-    },
-    year: 2012,
-    type: CarType.Coupe,
-    }
-  
+
 ];
 
 const carsolderthan2015: Car[]= car.filter((car) => car.year <2015);
