@@ -147,3 +147,60 @@ let readonlyUser: Readonly<User> = {
 //readonlyUser.id = 2 //error
 
 console.log(readonlyUser);
+
+
+//-----------------TASK-------------------------
+enum CarType {
+    Sedan,
+    SUV,
+    Truck,
+    Coupe
+}
+type CarModel = {
+    name: string,
+    description : string,
+}
+
+interface Car{
+    make: string | number,
+    model:CarModel,
+    year: number,
+    type: CarType,
+    isElectric? : boolean | number | string
+}
+
+let car: Car[] = [
+    
+    {
+    make: "Gtr",
+    model: {
+        name: "Nissan",
+        description: "very fast",
+    },
+    year: 2010,
+    type: CarType.Coupe
+    },
+    {
+    make: "alto",
+    model: {
+        name: "Maruti",
+        description: "family car",
+    },
+    year: 2012,
+    type: CarType.Sedan
+    },
+    
+    {
+    make: "mustang",
+    model: {
+        name: "Ford",
+        description: "brrrr",
+    },
+    year: 2012,
+    type: CarType.Coupe,
+    }
+  
+];
+
+const carsolderthan2015: Car[]= car.filter((car) => car.year <2015);
+console.log(carsolderthan2015);
