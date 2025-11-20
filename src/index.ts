@@ -1,6 +1,6 @@
 import express, { Application, Request, Response} from 'express';
 import bodyParser from 'body-parser';
-
+import bookRoutes from "./routes/book.routes"
 const app: Application = express();
 const PORT: number = 3000;
 
@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 app.get('/', (req:Request, res:Response) =>{
     res.send('Hello, World!');
 });
-app.get("/api/books");
+app.get("/api/books",bookRoutes);
 
 app.listen(PORT,() => {
     console.log(`Server :http://localhost:${PORT}`);
