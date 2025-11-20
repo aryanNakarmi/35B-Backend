@@ -1,6 +1,6 @@
 import express, { Application, Request, Response} from 'express';
 import bodyParser from 'body-parser';
-import bookRoutes from "./routes/book.routes"
+import bookRoutes from "./routes/book.route"
 const app: Application = express();
 const PORT: number = 3000;
 
