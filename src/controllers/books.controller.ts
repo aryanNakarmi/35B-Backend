@@ -6,12 +6,17 @@ export const BookSchema = z.object({
     id: z.string().min(1,{message: "Book ID is required"}), 
     title: z.string().min(1,{message: "Book Title is required"}), 
     date: z.string().optional() 
-})
-export type Book = {
-    id: string,
-    title: string,
-    date?: string
-};
+});
+export type Book = z.infer<typeof BookSchema>;// TypeScript type from Zod Schema
+
+//DTO - Data transer object
+export const CreateBookDTO= BookSchema.pick({id: true, title:true}); //which cleint sends to server
+export type CreateBookDTO = z.infer<typeof CreateBookDTO>;
+// export type Book = {
+//     id: string,
+//     title: string,
+//     date?: string
+// };
 
 export const book:Book[] = [
         {id: "B-1", title: "1984"},
