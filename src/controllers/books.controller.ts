@@ -12,7 +12,24 @@ export const book:Book[] = [
     ];
 
 export class BookController{
-    createBook = (req:Request, res: Response)=>{ };
+    createBook = (req:Request, res: Response)=>{ 
+        const {id, title} =req.body; //destructuring
+        //const id: string = req.body.id;
+        if(!id){
+            return res.status(400).json({message: "Book ID is required"});
+        }
+        if(!title){
+            return res.status(400).json({message: "Book ID is title"});
+        }
+        const checkBook = book.find(elem => elem.id === id);
+        if(checkBook){
+            return res.status(409).json({message: "Book ID already  exists"});
+        }
+        const newBook: Book ={id, title};
+        //same as {id:id, title: title} , if key and variable nam are same
+        book.push(newBook);
+        return res.status(201).json(newBook);
+    };
     getBooks = (req: Request, res: Response)=>{
         const return_book: Book[] = book;
        
