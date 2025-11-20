@@ -7,11 +7,13 @@ export const BookSchema = z.object({
     title: z.string().min(1,{message: "Book Title is required"}), 
     date: z.string().optional() 
 });
+
 export type Book = z.infer<typeof BookSchema>;// TypeScript type from Zod Schema
 
 //DTO - Data transer object
 export const CreateBookDTO= BookSchema.pick({id: true, title:true}); //which cleint sends to server
 export type CreateBookDTO = z.infer<typeof CreateBookDTO>;
+
 // export type Book = {
 //     id: string,
 //     title: string,
@@ -25,14 +27,19 @@ export const book:Book[] = [
 
 export class BookController{
     createBook = (req:Request, res: Response)=>{ 
+        const validation = CreateBookDTO.safeParse(req.body);
+        if(!validation.success){
+            return res.status(400).json({errors: validation.error});
+        }
         const {id, title} =req.body; //destructuring
         //const id: string = req.body.id;
-        if(!id){
-            return res.status(400).json({message: "Book ID is required"});
-        }
-        if(!title){
-            return res.status(400).json({message: "Book ID is title"});
-        }
+        // if(!id){
+        //     return res.status(400).json({message: "Book ID is required"});
+        // }
+    
+        // if(!title){
+        //     return res.status(400).json({message: "Book ID is title"});
+        // }
         const checkBook = book.find(elem => elem.id === id);
         if(checkBook){
             return res.status(409).json({message: "Book ID already  exists"});
