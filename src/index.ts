@@ -9,6 +9,7 @@ app.use(bodyParser.json());
 app.get('/', (req:Request, res:Response) =>{
     res.send('Hello, World!');
 });
+app.get("/api/books",bookRou)
 
 app.listen(PORT,() => {
     console.log(`Server :http://localhost:${PORT}`);
