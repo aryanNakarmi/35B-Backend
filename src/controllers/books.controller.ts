@@ -1,5 +1,7 @@
 import {Request, Response} from 'express';
 import {z} from 'zod';
+import { Book } from '../types/book.type';
+import { CreateBookDTO } from '../dtos/book.dto';
 
 
 
