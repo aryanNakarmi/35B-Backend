@@ -3,6 +3,7 @@ import {z} from 'zod';
 import { Book } from '../types/book.type';
 import { CreateBookDTO } from '../dtos/book.dto';
 import { book } from '../repositories/book.repositories';
+import { BookService } from '../services/book.service';
 
 
 
@@ -11,6 +12,8 @@ import { book } from '../repositories/book.repositories';
 //     title: string,
 //     date?: string
 // };
+
+const bookService = BookService;
 
 export class BookController{
     createBook = (req:Request, res: Response)=>{ 
