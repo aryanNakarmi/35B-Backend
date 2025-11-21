@@ -8,11 +8,20 @@ export const book:Book[] = [
 
 export interface IBookRepository{
     getAllBooks(): Book[];
+    getBookById(id:string): Book|undefined;
+    createBook(book: Book): Book;
 
 }
 
 export class BookRepository implements IBookRepository{
     getAllBooks(): Book[] {
         return book;
+    }
+    getBookById(id: string): Book | undefined {
+        return book.find(bk => bk.id === id);
+    }
+    createBook(newBook: Book): Book {
+        book.push(newBook);
+        return  newBook;
     }
 }
