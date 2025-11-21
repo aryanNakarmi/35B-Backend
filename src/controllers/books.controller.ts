@@ -2,14 +2,6 @@ import {Request, Response} from 'express';
 import {z} from 'zod';
 
 
-export const BookSchema = z.object({
-    id: z.string().min(1,{message: "Book ID is required"}), 
-    title: z.string().min(1,{message: "Book Title is required"}), 
-    date: z.string().optional() 
-});
-
-export type Book = z.infer<typeof BookSchema>;// TypeScript type from Zod Schema
-
 //DTO - Data transer object
 export const CreateBookDTO= BookSchema.pick({id: true, title:true}); //which cleint sends to server
 export type CreateBookDTO = z.infer<typeof CreateBookDTO>;
@@ -31,7 +23,8 @@ export class BookController{
         if(!validation.success){
             return res.status(400).json({errors: validation.error});
         }
-        const {id, title} =req.body; //destructuring
+        const {id, title} =validation.data; 
+        // const {id, title} =req.body; //destructuring
         //const id: string = req.body.id;
         // if(!id){
         //     return res.status(400).json({message: "Book ID is required"});
