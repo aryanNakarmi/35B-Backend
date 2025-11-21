@@ -35,6 +35,6 @@ export class BookController {
   getBooks = (req: Request, res: Response) => {
     const return_book: Book[] = bookService.getBooks();
 
-    res.status(200).json(book);
+    res.status(200).json(return_book);
   };
 }
