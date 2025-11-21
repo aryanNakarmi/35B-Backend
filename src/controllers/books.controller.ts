@@ -40,7 +40,7 @@ export class BookController {
 
   getBookById =  (req: Request, res:Response) =>{
     const bookId = req.params.bookid;
-    const return_bookId: Book|undefined = bookService.getBookById(bookId);
+    const return_bookId = bookService.getBookById(bookId);
     if(!return_bookId){
         return res.status(404).json({message: "Book not found"});
     }
