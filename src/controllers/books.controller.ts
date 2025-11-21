@@ -2,6 +2,7 @@ import {Request, Response} from 'express';
 import {z} from 'zod';
 import { Book } from '../types/book.type';
 import { CreateBookDTO } from '../dtos/book.dto';
+import { book } from '../repositories/book.repositories';
 
 
 
@@ -10,11 +11,6 @@ import { CreateBookDTO } from '../dtos/book.dto';
 //     title: string,
 //     date?: string
 // };
-
-export const book:Book[] = [
-        {id: "B-1", title: "1984"},
-        {id: "B-2", title: "To Kill a Mocking Bird",date: "2025-12-10"}
-    ];
 
 export class BookController{
     createBook = (req:Request, res: Response)=>{ 
