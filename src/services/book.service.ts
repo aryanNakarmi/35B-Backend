@@ -19,6 +19,7 @@ export class BookService{
         })
         return transformedBooks;
     }
+    
     createBook = (bookData:CreateBookDTO): Book => {
         const newBook: Book = {...bookData};
         //same as (id:bookData.id, title: bookData.id);
@@ -28,4 +29,9 @@ export class BookService{
         }
         return bookRepository.createBook(newBook);
     }
+
+    getBookById = (id: string): Book|undefined =>{
+        return bookRepository.getBookById(id);
+    }
+  
 }

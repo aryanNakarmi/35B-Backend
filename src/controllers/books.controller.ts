@@ -37,4 +37,12 @@ export class BookController {
 
     res.status(200).json(return_book);
   };
+
+  getBookById =  (req: Request, res:Response) =>{
+    const bookId = req.params.bookid;
+    const return_bookId: Book|undefined = bookService.getBookById(bookId);
+    if(!return_bookId){
+        return res.status(404).json({message: "Book not found"});
+    }
+  } 
 }

@@ -6,4 +6,10 @@ const bookController = new BookController();
 const router: Router = Router();
 
 router.get('/',bookController.getBooks);
+
+
+
+//make a router that hanldes GET request that takes bookId
+// /:bookid and calls bookController.getBookById
+
 export default router;
