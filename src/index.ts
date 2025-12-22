@@ -20,6 +20,12 @@ app.get('/', (req:Request, res:Response) =>{
     res.send('Hello, World!');
 });
 
-app.listen(PORT,() => {
-    console.log(`Server :http://localhost:${PORT}`);
-})
+async function startServer() {
+ await connectDatabase();
+ 
+ app.listen(PORT,() => {
+     console.log(`Server :http://localhost:${PORT}`);
+ }
+);
+}
+startServer();
