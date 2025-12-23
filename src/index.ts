@@ -1,6 +1,6 @@
 import express, { Application, Request, Response} from 'express';
 import bodyParser from 'body-parser';
-import bookRoutes from "./routes/book.route";
+
 import { connectDatabase } from './database/mongodb';
 import { PORT } from './config';
 import dotenv from 'dotenv';
@@ -13,7 +13,13 @@ const app: Application = express();
 // const PORT: number = 3000;
 
 app.use(bodyParser.json());
-app.get("/api/books",bookRoutes);
+
+import bookRoutes from "./routes/book.route";
+import authRoutes from "./routes/auth.route";
+
+app.use("/api/books",bookRoutes);
+app.use("/api/auth",authRoutes);
+
 
 
 app.get('/', (req:Request, res:Response) =>{
