@@ -3,6 +3,8 @@ import { UserRepository } from "../repositories/user.repositories";
 import bcryptjs from "bcryptjs";
 //custom error
 import { HttpError } from "../errors/http-error";
+import jwt from "jsonwebtoken";
+import { JWT_SECRET } from "../config";
 
 
 
@@ -43,5 +45,16 @@ export class UserService{
             throw new HttpError(401, "Invalid credentails");
         }
         //generate jwt
+
+        const payload = { //user identifier
+            id: user._id,
+            email: user.email,
+            username: user.username,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            role: user.role
+        }
+        const token = jwt.sign(payload, JWT_SECRET, {expiresIn: '30d'}); //30 dats
+        return {token, user};
     }
 }
