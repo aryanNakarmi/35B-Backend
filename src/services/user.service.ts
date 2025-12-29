@@ -1,4 +1,4 @@
-import { CreateUserDTO } from "../dtos/user.dto";
+import { CreateUserDTO, LoginUserDTO } from "../dtos/user.dto";
 import { UserRepository } from "../repositories/user.repositories";
 import bcryptjs from "bcryptjs";
 //custom error
@@ -26,5 +26,22 @@ export class UserService{
         const newUser = await userRepository.createUser(data);
         return newUser;
         
+    }
+
+    async loginUser(data: LoginUserDTO){
+
+        const user = await userRepository.getUserByEmail(data.email);
+        if(!user){
+            throw new HttpError(404, "User not found");
+        }
+        //compare password
+
+        const validPassword = await bcryptjs.compare(data.password, user.password);
+
+        //plaintext, hashed
+        if(!validPassword){
+            throw new HttpError(401, "Invalid credentails");
+        }
+        //generate jwt
     }
 }
