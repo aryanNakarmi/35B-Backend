@@ -7,4 +7,4 @@ export const MONGODB_URI: string = process.env.MONGODB_URI || 'mongodb://localho
 //application level constants, with fallbacks
 //if .env variable are not set
 
-export const JWT_SECRET: string = process.env.JWT_SECRET || 'default'
+export const JWT_SECRET: string = process.env.JWT_SECRET || 'default';
