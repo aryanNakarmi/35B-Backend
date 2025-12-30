@@ -6,7 +6,7 @@ import { NextFunction, Request, Response } from "express";
 
 const userRepository = new UserRepository();
 
-export const middlewareSimple = 
+export const authorizedMiddleware = 
     async (req: Request, res: Response, next: NextFunction) => {
     if(req.headers && req.headers.authorization){
         return next();
