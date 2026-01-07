@@ -21,6 +21,7 @@ import authUserRouter from "./routes/admin/user.route";
 
 app.use("/api/books",bookRoutes);
 app.use("/api/auth",authRoutes);
+app.use('/api/admin/users',authUserRouter);
 
 
 app.get('/', (req:Request, res:Response) =>{
