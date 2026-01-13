@@ -4,13 +4,22 @@ import bodyParser from 'body-parser';
 import { connectDatabase } from './database/mongodb';
 import { PORT } from './config';
 import dotenv from 'dotenv';
+import cors from 'cors';
 
 dotenv.config();
 //can use .env variable below this
 console.log(process.env.PORT);
 
 const app: Application = express();
-// const PORT: number = 3000;
+let corsOption = {
+    origin: ["http://localhost:3000", "http://localhost:3005"],
+    // which domain can access your backend server
+    // add frontend domain in origin
+}
+//origin: "*", //allow all domain to access your backend serveer
+app.use(cors(corsOption));  //implementt cors middleware
+
+//const PORT: number = 3000;
 
 app.use(bodyParser.json());
 
