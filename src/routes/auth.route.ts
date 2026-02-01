@@ -14,7 +14,8 @@ router.get("/whoami", authorizedMiddleware, authController.getUserById);
 router.put(
     "/update-profile",
     authorizedMiddleware,
-    uploads.single("image"), //image = fieldname in form-data
+    uploads.single("image"), //im
+    // age = fieldname in form-data
     authController.updateUser,
 )
 export default router;
