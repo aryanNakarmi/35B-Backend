@@ -31,12 +31,15 @@ app.use(bodyParser.json());
 import bookRoutes from "./routes/book.route";
 import authRoutes from "./routes/auth.route";
 import authUserRouter from "./routes/admin/user.route";
+import adminBlogRoutes from "./routes/admin/blog.route";
+import blogRoutes from "./routes/blog.route";
 
 
 app.use("/api/books",bookRoutes);
 app.use("/api/auth",authRoutes);
 app.use('/api/admin/users',authUserRouter);
-
+app.use('/api/admin/blogs',adminBlogRoutes);
+app.use('/api/blogs',blogRoutes);
 
 app.get('/', (req:Request, res:Response) =>{
     res.send('Hello, World!');
